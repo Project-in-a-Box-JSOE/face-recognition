@@ -15,6 +15,7 @@ sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda
 sudo dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
 sudo apt update
 sudo apt install -y cuda-10-0 cuda-toolkit-10-0
+rm cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
 
 # Install cuDNN 7 + NCCL
 echo -e "\n\n-----------------------------------\nInstalling cuDNN & NCCL\n-----------------------------------\n\n"
@@ -22,6 +23,7 @@ wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu
 sudo dpkg -i nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
 sudo apt update
 sudo apt install -y libcudnn7 libcudnn7-dev libnccl2 libc-ares-dev
+rm nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
 
 # Link libaries to proper locations & update PATH
 echo -e "\n\n-----------------------------------\nLinking libraries & updating PATH\n-----------------------------------\n\n"
@@ -35,7 +37,10 @@ source ~/.bashrc
 
 # Install TensorFlow given .whl from repository
 echo -e "\n\n-----------------------------------\nInstalling Tensorflow from Git\n-----------------------------------\n\n"
-# wget GIT_LINKS
+wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlaa?raw=true
+wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlab?raw=true
+wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlac?raw=true
+wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlad?raw=true
 cat tfwhl* > tensorflow-1.15.0rc3-cp36-cp36m-linux_x86_64.whl
 rm tfwhl*
 pip3 install tensorflow-1.15.0rc3-cp36-cp36m-linux_x86_64.whl
