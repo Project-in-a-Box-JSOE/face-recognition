@@ -37,10 +37,10 @@ source ~/.bashrc
 
 # Install TensorFlow given .whl from repository
 echo -e "\n\n-----------------------------------\nInstalling Tensorflow from Git\n-----------------------------------\n\n"
-wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlaa?raw=true
-wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlab?raw=true
-wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlac?raw=true
-wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlad?raw=true
+# wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlaa?raw=true
+# wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlab?raw=true
+# wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlac?raw=true
+# wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlad?raw=true
 cat tfwhl* > tensorflow-1.15.0rc3-cp36-cp36m-linux_x86_64.whl
 rm tfwhl*
 pip3 install tensorflow-1.15.0rc3-cp36-cp36m-linux_x86_64.whl
