@@ -34,7 +34,7 @@ pip3 install keras opencv-contrib-python flask flask_cors
 # Acquire data files for opencv
 prevDir=$PWD
 cascadeName="haarcascade_frontalface_default.xml"
-opencvGit="https://github.com/opencv/blob/master/data/haarcascades/${cascadeName}?raw=true"
+opencvGit="https://github.com/opencv/opencv/blob/master/data/haarcascades/${cascadeName}?raw=true"
 cvHaarPath=$(python3 -c "import cv2; import sys; sys.exit(cv2.data.haarcascades)" 2>&1)
 cd "$cvHaarPath"
 wget "$opencvGit" -O "$cascadeName"
