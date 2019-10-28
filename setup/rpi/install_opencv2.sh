@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
 # Script to install OpenCV on Raspberry Pi 3
-# Information from Will Chen and this website:
-# https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/
-# Author: Simon Fong
+# Author: Simon Fong, Brian Henriquez
 
-# Install everything in home directory.
-cd /home/pi
+# Init Update
+sudo apt-get -y update
 
 # Developer tools used in build process
 sudo apt-get install build-essential cmake pkg-config git -y
@@ -31,4 +29,15 @@ sudo apt-get install python-dev python-numpy -y
 sudo apt-get install libqt4-test libqtgui4 liblapack-dev libatlas-base-dev -y
 
 # Use Python3!
-pip3 install keras opencv-python flask flask_cors
+pip3 install keras opencv-contrib-python flask flask_cors
+
+# Acquire data files for opencv
+prevDir=$PWD
+cascadeName="haarcascade_frontalface_default.xml"
+opencvGit="https://github.com/opencv/blob/master/data/haarcascades/${cascadeName}?raw=true"
+cvHaarPath=$(python3 -c "import cv2; import sys; sys.exit(cv2.data.haarcascades)" 2>&1)
+cd "$cvHaarPath"
+wget "$opencvGit" -O "$cascadeName"
+
+# Return to prev directory
+cd "$prevDir"

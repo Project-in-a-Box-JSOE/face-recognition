@@ -1,3 +1,5 @@
+# Install script for Azure
+
 # Prepare system packages for use
 echo -e "\n\n-----------------------------------\nConfiguring Packages...\n-----------------------------------\n\n"
 # sudo dpkg --configure -a # Only used for NVIDIA img / Needs supervision

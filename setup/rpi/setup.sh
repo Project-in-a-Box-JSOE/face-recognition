@@ -11,6 +11,12 @@
 sudo apt-get update -y
 sudo apt-get upgrade -y
 
+# Set up NTP service
+sudo apt-get install ntp -y
+sudo systemctl enable ntp.service
+sudo timedatectl set-ntp true
+timedatectl # final time update
+
 # Enable SSH
 sudo systemctl enable ssh
 sudo systemctl start ssh
@@ -37,16 +43,3 @@ else
         echo "gpu_mem=128" >> $CONFIG
     fi
 fi
-
-# Install Python packages
-
-# Install environment tool
-sudo pip install virtualenv
-
-# Install Flask and CORS
-sudo pip install flask flask-cors
-
-# Install Machine Learning Framework
-# pip install tensorflow keras h5py
-
-
