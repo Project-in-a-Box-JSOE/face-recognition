@@ -37,7 +37,8 @@ cascadeName="haarcascade_frontalface_default.xml"
 opencvGit="https://github.com/opencv/opencv/blob/master/data/haarcascades/${cascadeName}?raw=true"
 cvHaarPath=$(python3 -c "import cv2; import sys; sys.exit(cv2.data.haarcascades)" 2>&1)
 cd "$cvHaarPath"
-wget "$opencvGit" -O "$cascadeName"
+wget "$opencvGit" -q -O "$cascadeName"
+echo "Make sure to use Python 3 and the cv2.data.haarcascades variable to design your program..."
 
 # Return to prev directory
 cd "$prevDir"
