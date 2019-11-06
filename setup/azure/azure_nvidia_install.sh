@@ -47,6 +47,9 @@ cat tfwhl* > tensorflow-1.15.0rc3-cp36-cp36m-linux_x86_64.whl
 rm tfwhl*
 pip3 install tensorflow-1.15.0rc3-cp36-cp36m-linux_x86_64.whl
 
+# Install keras dependencies
+pip3 install keras opencv-python
+
 # Test TensorFlow Installation
 echo -e "\n\n-----------------------------------\nENSURE OUTPUT IS 1!!!!\n-----------------------------------\n\n"
 python3 -c "import tensorflow as tf; print(tf.contrib.eager.num_gpus())"
