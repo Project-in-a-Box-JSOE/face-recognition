@@ -16,7 +16,7 @@ import cv2
 
 def process_image():
     ''' Performs all of the image processing and saving using OpenCV API '''
-    # YOUR CODE HERE
+    # TODO: YOUR CODE HERE
     pass
 
 

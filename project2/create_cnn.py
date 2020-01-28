@@ -41,17 +41,18 @@ Modify this code to write a LeNet with the following requirements:
     activation function: softmax
     output 10-dimensional vector (This is specified through units.)
 """
-# TODO: Import other layers as necessary. (Conv2D, MaxPooling2D)
-from keras.layers import Input, Dense
+from keras.layers import Input, Dense, Conv2D, MaxPooling2D
 from keras.models import Model
 
-# TODO: Currently, sets input dimension to be 784x1. Change to 32x32x1
-inputs = Input(shape=(784,))
+# Create an input Layer with input dimension (32, 32, 1)
+# TODO: YOUR CODE HERE
+inputs = ...
 
-# A layer instance is callable on a tensor, and returns a tensor
-x = Dense(64, activation='relu')(inputs)
-x = Dense(64, activation='relu')(x)
-predictions = Dense(10, activation='softmax')(x)
+# Apply the convolution and padding layers to the input layers using the
+# FUNCTIONAL paradigm. Top of the network with the dense layers as
+# requested in the above network description.
+# TODO: YOUR CODE HERE
+predictions = ...
 
 # This creates a model that includes the Input layer and three Dense layers
 model = Model(inputs=inputs, outputs=predictions)

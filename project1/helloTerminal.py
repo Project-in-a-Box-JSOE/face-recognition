@@ -16,7 +16,7 @@ def printCurTime():
     ''' Use a loop to print the current time for 10 seconds'''
     startTime = time()
     while(time() < startTime + 10):
-        # Your code here
+        # YOUR CODE HERE
         pass
 
 def printMethod():
