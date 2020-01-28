@@ -6,9 +6,10 @@ Adapted from:
 http://www.pyimagesearch.com/2015/03/30/accessing-the-raspberry-pi-camera-with-opencv-and-python/
 
 Use this code as a template to process images in real time, using the same techniques as the last challenge.
-You need to display a gray scale video with 320x240 dimensions, with box at the center
+You need to display a (320 x 240) grayscale video feed with a random box in the center of the image. Once
+you have presented the first assignment, make a copy of this file and adjust the file to detect faces using
+a larger feed resolution (640 x 480).
 """
-
 
 # import the necessary packages
 from picamera.array import PiRGBArray
