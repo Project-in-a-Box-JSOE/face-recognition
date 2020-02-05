@@ -41,8 +41,8 @@ Modify this code to write a LeNet with the following requirements:
     activation function: softmax
     output 10-dimensional vector (This is specified through units.)
 """
-from keras.layers import Input, Dense, Conv2D, MaxPooling2D
-from keras.models import Model
+from tensorflow.keras.layers import Input, Dense, Conv2D, MaxPooling2D
+from tensorflow.keras.models import Model
 
 # Create an input Layer with input dimension (32, 32, 1)
 # TODO: YOUR CODE HERE

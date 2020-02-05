@@ -31,6 +31,7 @@ def request_from_server(img):
     :returns: Returns a dictionary containing label and cofidence.
     """
     # URL or PUBLIC DNS to your server
+    # NOTE: THIS IS THE ENDPOINT USED FOR PREDICTION!!! DO NOT USE THE ROOT PAGE.
     URL = ""
 
     # File name so that it can be temporarily stored.
@@ -39,10 +40,11 @@ def request_from_server(img):
     # TODO: Save image with name stored in 'temp_image_name'
 
     # Reopen image and encode in base64
-    # Open binary file in read mode
-    image = open(temp_image_name, 'rb')
+    image = open(temp_image_name, 'rb') #open binary file in read mode
     image_read = image.read()
-    image_64_encode = base64.encodestring(image_read)
+    image_64_encode = base64.b64encode(image_read)
+    image_64_string = image_64_encode.decode('utf-8')
+    image.close()
 
     # Defining a params dict for the parameters to be sent to the API
     payload = {'image': image_64_encode}
@@ -105,9 +107,7 @@ def main():
 
                 # TODO: Display label on face image
                 # Save what you want to write on image to 'result_to_display'
-                # [OPTIONAL]: At this point you only have a number to display,
-                # you could add some extra code to convert your number to a
-                # name
+
 
                 cv2.putText(frame, str(result_to_display), (10, 30), FONT, 1, (0, 255, 0), 2)
                 cv2.imshow('Face Image for Classification', frame)

@@ -17,7 +17,7 @@ Installation:
 """
 import cv2
 import numpy as np
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from flask import Flask, request, jsonify, abort, send_from_directory
 from flask_cors import CORS
 
@@ -27,6 +27,9 @@ CORS(app)                               # Allow CORS (Cross Origin Requests)
 # TODO: Load the model from the weights file.
 MODEL =  # _______
 
+# TODO: Place you and your partner's class number and names here
+personDict = {1:Unknown,
+              2:Unknown}
 
 def classify(path_to_image):
     """
@@ -64,15 +67,17 @@ def classify(path_to_image):
     # Hint: np.argmax
     label =  # ________
 
-    # TODO: Calculate confidence according to the following metric:
-    # Confidence = prediction_value / sum(all_prediction_values)
-    # Be sure to call your confidence value 'conf'
-    # Hint: np.sum()
-    label_value =  # _______
-    total =  # _________
+    # TODO: Calculate confidence (likelihood) of the predicted label
+    # being the correct label for your model. Recall that the outputs
+    # are already the output of a softmax function.
     conf =  # __________
 
-    prediction = {'label': str(label),
+    # TODO: Use the dictionary above this function to grab the current
+    # person's name or return Unknown if not within the dict.
+    # Hint: Use .get method of the dictionary to do it in one line...
+    curPerson = # ___________
+
+    prediction = {'label': curPerson,
                   'confidence': float(conf)}
 
     return prediction
@@ -84,56 +89,6 @@ def index():
     Handles sending the webcam tool.
     """
     return send_from_directory('.', 'index.html')
-
-
-# Persons seen list. Contains prediction dictionaries of label and confidence.
-persons = []
-
-
-@app.route('/person/<person>')
-def get_person(person):
-    """ Handles returning persons last seen.
-
-    If a integer is given, return the the person in that index of the array.
-    If the string 'last', return the last person seen.
-    If anything else, return an error.
-
-    :param person: index | last | other
-    :return: prediction | error
-    """
-
-    # Default prediction to return. If nobody has been logged yet.
-    prediction = {'error': 'No body seen yet.'}
-
-    # Default index
-    index = None
-
-    # Handle specific index
-    try:
-        index = int(person)
-
-    except ValueError as e:
-        print("Exception: {}".format(e))
-
-    # Handle last person
-    if(person == 'last'):
-        index = -1
-
-    # Handle out of bounds.
-    try:
-        prediction = persons[index]
-    except IndexError as e:
-        # When index is not in range.
-        print("Exception: {}".format(e))
-    except TypeError as e:
-        # When index is None
-        print("Exception: {}".format(e))
-
-    # Converts python dictionary into JSON format
-    prediction_json = jsonify(prediction)
-
-    # Respond to the request (Send prediction back to Pi)
-    return prediction_json
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -160,7 +115,8 @@ def predict():
 
     # Decodes the image data and saves the image to disk
     with open(temp_image_name, 'wb') as fh:
-        fh.write(image_data.decode('base64'))
+        import base64
+        fh.write(base64.b64decode(image_data.encode('utf-8')))
 
     # TODO: Call classify to predict the image and save the result to a
     # variable called 'prediction'
