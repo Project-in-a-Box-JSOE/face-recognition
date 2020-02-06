@@ -22,6 +22,9 @@ FONT = cv2.FONT_HERSHEY_SIMPLEX
 # TODO: Declare path to face cascade
 CASCADE_PATH = ""
 
+# TODO: URL or PUBLIC DNS to your server
+# NOTE: THIS IS THE ENDPOINT USED FOR PREDICTION!!! DO NOT USE THE ROOT PAGE.
+ENDPOINT_PATH = ""
 
 def request_from_server(img):
     """
@@ -30,14 +33,13 @@ def request_from_server(img):
     :param img: Image array to be classified.
     :returns: Returns a dictionary containing label and cofidence.
     """
-    # URL or PUBLIC DNS to your server
-    # NOTE: THIS IS THE ENDPOINT USED FOR PREDICTION!!! DO NOT USE THE ROOT PAGE.
-    URL = ""
+    URL = ENDPOINT_PATH
 
     # File name so that it can be temporarily stored.
     temp_image_name = 'temp.jpg'
 
     # TODO: Save image with name stored in 'temp_image_name'
+
 
     # Reopen image and encode in base64
     image = open(temp_image_name, 'rb') #open binary file in read mode
@@ -47,7 +49,7 @@ def request_from_server(img):
     image.close()
 
     # Defining a params dict for the parameters to be sent to the API
-    payload = {'image': image_64_encode}
+    payload = {'image': image_64_string}
 
     # Sending post request and saving the response as response object
     response = requests.post(url=URL, json=payload)
@@ -59,8 +61,8 @@ def request_from_server(img):
 
 
 def main():
-    # 1. Start running the camera.
     # TODO: Initialize face detector
+
 
     # Initialize camera and update parameters
     camera = PiCamera()
@@ -71,9 +73,9 @@ def main():
     rawCapture = PiRGBArray(camera, size=(width, height))
 
     # Warm up camera
-    print 'Let me get ready ... 2 seconds ...'
+    print('Let me get ready ... 2 seconds ...')
     time.sleep(2)
-    print 'Starting ...'
+    print('Starting ...')
 
     # 2. Detect a face, display it, and get confirmation from user.
     for frame in camera.capture_continuous(
@@ -88,6 +90,7 @@ def main():
         # TODO: Use face detector to get faces.
         # Be sure to save the faces in a variable called 'faces'
 
+
         for (x, y, w, h) in faces:
             print('==================================')
             print('Face detected!')
@@ -98,18 +101,17 @@ def main():
             answer = input('Confirm image (1-yes / 0-no): ')
             print('==================================')
 
-            if(answer == 1):
+            if(answer == '1'):
                 print('Let\'s see who you are...')
 
                 # TODO: Get label and confidence using request_from_server
 
                 print('New result found!')
 
-                # TODO: Display label on face image
+                # TODO: Display label on face image (rectangle + text on top)
                 # Save what you want to write on image to 'result_to_display'
 
 
-                cv2.putText(frame, str(result_to_display), (10, 30), FONT, 1, (0, 255, 0), 2)
                 cv2.imshow('Face Image for Classification', frame)
                 cv2.waitKey()
                 break

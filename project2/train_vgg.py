@@ -26,7 +26,7 @@ TRAIN_DIR =  # TODO
 VAL_DIR =  # TODO
 NUM_EPOCHS = 5  # TODO
 BATCH_SIZE = 16
-NUM_CLASSES = 20  # TODO
+NUM_CLASSES =  # TODO
 
 # Do not modify these values
 IMG_H, IMG_W, NUM_CHANNELS = 224, 224, 3

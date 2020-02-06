@@ -9,7 +9,7 @@ Using a main function:
     1) Print out the current time for the next ten seconds
     2) Terminate with a "Goodbye, World"
 """
-from datetime.datetime import now
+from datetime import datetime
 from time import time
 
 def printCurTime():
@@ -23,4 +23,4 @@ def printMethod():
     ''' Prints the final message '''
     pass
 
-# Use the "main" module if declaration here along with the completed functions
+# Use the "main" module "if" declaration here along with the completed functions
