@@ -1,7 +1,7 @@
 # Install script for Azure
 
 # Prepare system packages for use
-echo -e "\n\n-----------------------------------\nConfiguring Packages...\n-----------------------------------\n\n"
+echo -e "\n\n-----------------------------------\nConfiguring Packages\n-----------------------------------\n\n"
 # sudo dpkg --configure -a # Only used for NVIDIA img / Needs supervision
 sudo apt update
 # sudo apt install -y git # Only used for NVIDIA img
@@ -39,20 +39,16 @@ source ~/.bashrc
 
 # Install TensorFlow given .whl from repository
 echo -e "\n\n-----------------------------------\nInstalling Tensorflow from Git\n-----------------------------------\n\n"
-# wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlaa?raw=true
-# wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlab?raw=true
-# wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlac?raw=true
-# wget https://github.com/ProjectInABox/face-recognition/blob/master/setup/azure/tfwhlad?raw=true
-cat tfwhl* > tensorflow-1.15.0rc3-cp36-cp36m-linux_x86_64.whl
+cat tfwhl* > tensorflow-2.1.0-cp36m-cp36m-linux_x86_64.whl
 rm tfwhl*
-pip3 install tensorflow-1.15.0rc3-cp36-cp36m-linux_x86_64.whl
+pip3 install tensorflow-2.1.0-cp36m-cp36m-linux_x86_64.whl
 
-# Install keras dependencies
-pip3 install keras opencv-python
+# Install extra dependencies in case used for entire project
+pip3 install opencv-python opencv-contrib-python flask flas_cors
 
 # Test TensorFlow Installation
 echo -e "\n\n-----------------------------------\nENSURE OUTPUT IS 1!!!!\n-----------------------------------\n\n"
-python3 -c "import tensorflow as tf; print(tf.contrib.eager.num_gpus())"
+python3 -c "from tensorflow.python.eager import context; print(context.num_gpus())"
 
 # Exit with success
 exit 0
