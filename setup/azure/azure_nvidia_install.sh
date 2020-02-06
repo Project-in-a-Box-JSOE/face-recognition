@@ -48,7 +48,7 @@ pip3 install opencv-python opencv-contrib-python flask flas_cors
 
 # Test TensorFlow Installation
 echo -e "\n\n-----------------------------------\nENSURE OUTPUT IS 1!!!!\n-----------------------------------\n\n"
-python3 -c "import tensorflow as tf; print(tf.contrib.eager.num_gpus())"
+python3 -c "from tensorflow.python.eager import context; print(context.num_gpus())"
 
 # Exit with success
 exit 0
