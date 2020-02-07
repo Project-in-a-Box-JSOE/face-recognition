@@ -39,12 +39,12 @@ source ~/.bashrc
 
 # Install TensorFlow given .whl from repository
 echo -e "\n\n-----------------------------------\nInstalling Tensorflow from Git\n-----------------------------------\n\n"
-cat tfwhl* > tensorflow-2.1.0-cp36m-cp36m-linux_x86_64.whl
-rm tfwhl*
-pip3 install tensorflow-2.1.0-cp36m-cp36m-linux_x86_64.whl
+cat tfwhl* > tensorflow-2.1.0-cp36-cp36m-linux_x86_64.whl
+pip3 install tensorflow-2.1.0-cp36-cp36m-linux_x86_64.whl
+rm *.whl
 
 # Install extra dependencies in case used for entire project
-pip3 install opencv-python opencv-contrib-python flask flas_cors
+pip3 install opencv-python opencv-contrib-python flask flask_cors
 
 # Test TensorFlow Installation
 echo -e "\n\n-----------------------------------\nENSURE OUTPUT IS 1!!!!\n-----------------------------------\n\n"
