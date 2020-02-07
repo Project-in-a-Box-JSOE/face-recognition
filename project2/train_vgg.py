@@ -70,7 +70,7 @@ def load_data(src_path):
     for i in range(num_images):
         image_path = image_path_list[i]
         if platform == "win32":
-            label = int(image_path.plot('\\')[-2]) # TODO: Test this on Windows
+            label = int(image_path.split('\\')[-2])
         else:
             label = int(image_path.split('/')[-2])
         image = cv2.imread(image_path, 1)
